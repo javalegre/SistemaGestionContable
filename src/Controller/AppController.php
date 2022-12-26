@@ -49,5 +49,11 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+
+                
+        /* Esto da acceso cuando estamos trabajando en local */
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {        
+            $this->Auth->allow();
+        }
     }
 }
