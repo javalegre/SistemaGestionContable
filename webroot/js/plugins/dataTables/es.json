@@ -1,0 +1,18 @@
+'emptyTable' => 'No hay datos en la tabla.',
+'processing' => 'Buscando ...',
+'search' => 'Buscar',
+'info' => 'Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros',
+'paginate' => [
+	'first' => __d('data_tables', 'Primero'),
+	'last' => __d('data_tables', 'Ultimo'),
+	'next' => __d('data_tables', 'Siguiente'),
+	'previous' => __d('data_tables', 'Anterior'),
+],
+'infoEmpty' => __d('data_tables', 'No hay registros para mostrar'),
+'infoFiltered' => __d('data_tables', '(Se encontraron _MAX_ registros)'),
+'lengthMenu' => __d('data_tables', 'Show _MENU_ entries'),
+'zeroRecords' => __d('data_tables', 'No hay registros'),
+'aria' => [
+	'sortAscending' => __d('data_tables', ': activar para ordenar en forma Ascendente'),
+	'sortDescending' => __d('data_tables', ': activar para ordenar en forma Descendente'),
+]
