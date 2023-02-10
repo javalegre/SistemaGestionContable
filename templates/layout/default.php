@@ -25,7 +25,7 @@
         <?= $this->Html->css(['plugins/toastr/toastr.min', 'plugins/select2/select2', 'plugins/select2/select2-bootstrap.min', 'plugins/select2/select2-inline', 'plugins/dataTables/datatables.min']) ?>
 
         <?= $this->Html->script(['plugins/jquery/jquery-3.6.3.min','plugins/bootstrap/bootstrap.min', 'plugins/slimscroll/jquery.slimscroll.min', 'plugins/metisMenu/jquery.metisMenu', 'plugins/toastr/toastr.min']) ?>
-        <?= $this->Html->script(['plugins/dataTables/datatables.min', 'plugins/dataTables/ellipsis.datatable']) ?>
+        <?= $this->Html->script(['plugins/dataTables/datatables.min', 'plugins/dataTables/ellipsis.datatable', 'plugins/dataTables/dataTables.responsive.min', 'plugins/moment/moment.min']) ?>
         <?= $this->Html->script(['plugins/select2/select2.min','plugins/select2/es', 'inspinia']) ?>
         <?= $this->Html->script(['plugins/dataTables/cakephp.dataTables']) ?>
     </head>
