@@ -90,9 +90,17 @@ class UsersTable extends Table
             ->notEmptyString('apodo');
 
         $validator
-            ->scalar('ruta_imagen')
-            ->maxLength('ruta_imagen', 250)
-            ->allowEmptyFile('ruta_imagen');
+            ->allowEmptyFile('ruta_imagen')
+            ->add('ruta_imagen', [
+                'mimeType' => [
+                     'rule' => ['mimeType',['image/jpg','image/png','image/jpeg','application/pdf']],
+                     'message' => 'File type must be .jpg,.jpeg,.png,.pdf',
+                ],
+                'fileSize' => [
+                     'rule' => ['fileSize','<', '2MB'],
+                     'message' => 'File size must be less than 2MB',
+                ]
+            ]);
 
         $validator
             ->scalar('observaciones')

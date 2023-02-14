@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
-                    <span><?= $this->Html->image($this->request->getSession()->read('Auth.ruta_imagen'), ['class' => 'img-circle img-md']) ?></span>
+                    <span><?= $this->Html->image('users/'.$this->request->getSession()->read('Auth.ruta_imagen'), ['class' => 'img-circle img-md']) ?></span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span><strong><span class="text-xs block m-t-xs"><?= $this->request->getSession()->read('Auth.nombre') ?> <b class="caret"></b></span></strong></span> 
                     </a>
