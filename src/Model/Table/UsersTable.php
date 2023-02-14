@@ -8,6 +8,11 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use SoftDelete\Model\Table\SoftDeleteTrait;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use Cake\Datasource\ConnectionManager;
+use Cake\I18n\Time;
 
 /**
  * Users Model
@@ -126,5 +131,98 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
 
         return $rules;
+    }
+
+     /**
+     * Exportar Users a Excel
+     * 
+     * @return type URL del archivo de excel generado
+     */
+    public function GenerarExcel($system_name = null)
+    {
+        
+        $usuarios = $this->find('all', [
+            'withDeleted' => 'withDeleted'
+        ]);
+        
+        $documento = new Spreadsheet();
+        
+        $sheet = $documento->getActiveSheet();
+        $sheet->setTitle('Users');
+        
+        //  /* Creamos el encabezado y le damos estilos */
+        // $sheet->mergeCells('A1:A3'); /* Inicio Logo  */
+        // $drawing = new Drawing();
+        // $drawing->setName('Logo');
+        // $drawing->setDescription('Users');
+        // $drawing->setPath(WWW_ROOT . 'img' . DS . 'logo_elagronomo_print.png');
+        // $drawing->setCoordinates('A1');
+        // $drawing->setHeight(58);
+        // $drawing->setWorksheet($documento->getActiveSheet());
+
+        /* Ahora el nombre del sistema */
+        $sheet->mergeCells('B1:G3');
+        $sheet->setCellValue('B1', $system_name);
+        $styleArray = ['font' => ['size' => 36], 'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT]];
+        $sheet->getStyle('B1:D3')->applyFromArray($styleArray);
+
+        /* Ahora pongo todo el encabezado en fondo blanco */
+        $styleArray = ['fill' => ['fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFFFF']]];
+        $sheet->getStyle('A1:W3')->applyFromArray($styleArray);
+       
+        /* Le agrego estilos al color del encabezado de las columnas */
+        $styleArray = [
+            'font' => ['size' => 11, 'color' => ['startColor' => ['argb' => '94995F']]],
+            'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            'borders' => ['outline' => ['borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN]],
+            'fill' => ['fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID, 'startColor' => ['argb' => 'D8E4BC']]
+        ];
+        $sheet->getStyle('A4:W4')->applyFromArray($styleArray);        
+        
+        $linea = 5;
+        
+        /* Escribo los encabezados */
+        $sheet->setCellValue('A4', 'Id');
+        $sheet->setCellValue('B4', 'Nombre');
+        $sheet->setCellValue('C4', 'Username');
+        $sheet->setCellValue('D4', 'E-Mail');
+        $sheet->setCellValue('E4', 'apodo');
+        $sheet->setCellValue('F4', 'avatar');
+        $sheet->setCellValue('G4', 'Observaciones');
+        $sheet->setCellValue('H4', 'Creado el');
+        $sheet->setCellValue('I4', 'Fecha baja');
+
+        foreach ($usuarios as $usuario) {
+            $sheet->setCellValueByColumnAndRow(1, $linea, $usuario->id);
+            $sheet->setCellValueByColumnAndRow(2, $linea, $usuario->nombre);
+            $sheet->setCellValueByColumnAndRow(3, $linea, $usuario->username);
+            $sheet->setCellValueByColumnAndRow(4, $linea, $usuario->email);
+            $sheet->setCellValueByColumnAndRow(5, $linea, $usuario->apodo ? $usuario->apodo : '');
+            $sheet->setCellValueByColumnAndRow(6, $linea, $usuario->ruta_imagen ? $usuario->ruta_imagen : '');
+            $sheet->setCellValueByColumnAndRow(7, $linea, $usuario->observaciones);
+            $sheet->setCellValueByColumnAndRow(8, $linea, $usuario->created);
+            $sheet->setCellValueByColumnAndRow(9, $linea, $usuario->deleted);
+                        
+            $linea++;
+        }
+
+        foreach (range('B', 'U') as $columnID) {
+            //autodimensionar las columnas
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
+        }
+        
+        $time = Time::now();
+        $fecha_actual = $time->i18nFormat('yyyy_MM_dd_HHmm');
+
+        $nombreDelDocumento = 'usuarios_'. $fecha_actual .'.xlsx';
+        
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $nombreDelDocumento . '"');
+        header('Cache-Control: max-age=0');
+        
+        $writer = IOFactory::createWriter($documento, 'Xlsx', 'Excel2007');
+        ob_end_clean();
+        $writer->save('php://output');
+        exit();
     }
 }

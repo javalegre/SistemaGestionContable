@@ -17,7 +17,8 @@
                 </div>
                 <div class="logo-element"><?= $system_abbr ?></div>
             </li>
-            <li><a href="/"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span>  </a></li>
+            <li><a href="/"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a></li>
+            <li><a href="/users"><i class="fa fa-user"></i> <span class="nav-label">Usuarios</span></a></li>
         </ul>
     </div>
 </nav>

@@ -40,8 +40,17 @@ class UsersController extends AppController
                 'data' => 'apodo'
             ], [
                 'field' => 'observaciones',
-                'data' => 'observaciones'
-                ]
+                'data' => 'observaciones',
+                'searchable' => false
+            ], [
+                'field' => 'created',
+                'data' => 'created',
+                'searchable' => false
+            ], [
+                'field' => 'deleted',
+                'data' => 'deleted',
+                'searchable' => false
+            ]
           ];
 
             $this->set('columns', $columns);
@@ -51,17 +60,7 @@ class UsersController extends AppController
                     ], $columns);
 
             $this->set('data', $data);
-
-
-//             $users = $this->Users->find('all');
-
-//             // Set the view vars that have to be serialized.
-//             $this->set(compact('users'));
-// //            $data = serialize($users);
-
-//             // Specify which view vars JsonView should serialize.
-//             //$this->viewBuilder()->setClassName("Json");
-             $this->viewBuilder()->setOption('serialize', ['data']);
+            $this->viewBuilder()->setOption('serialize', ['data']);
 
 
 
@@ -269,5 +268,17 @@ class UsersController extends AppController
         $this->set('data', $data);
         $this->set('_serialize', array_merge($this->viewBuilder()->getVar('_serialize'), ['data']));
         
+    }
+
+    /**
+     * excel
+     *
+     * Genera un archivo en excel con el listado de users
+     */
+    public function excel()
+    {
+        $resultado = $this->Users->GenerarExcel();
+
+        return $resultado;
     }
 }

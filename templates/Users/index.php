@@ -29,7 +29,10 @@
      * 
      */
     function fecha(data, type, full, meta) {
-        return data ? moment.utc(data).format('DD/MM/YYYY') : '';
+        if (type === 'display' || type === 'filter') {
+            return data ? moment.utc(data).format('DD/MM/YYYY') : '';
+        }
+        return '';
     };
 </script>
 
@@ -37,10 +40,9 @@
     <div class="ibox-title">
         <h5><?= __('Lista Usuarios') ?></h5>
         <div class="m-t-n-xs pull-right">
-            <?= $this->Html->link('<i class="fa fa-plus"></i>',['controller' => 'Users', 'action' => 'add'], ['type' => 'button', 'title' => __('Crear un nuevo usuario'), 'class'=>'btn btn-monitoreo btn-icon-only btn-circle', 'escape' => false]) ?>
-            <?= $this->Form->button('', ['class' => 'btn btn-monitoreo btn-icon-only btn-circle fa fa-times' , 'title' => 'Cancelar', 'escape' => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-plus"></i>', ['controller' => 'Users', 'action' => 'add'], ['type' => 'button', 'title' => __('Crear un nuevo usuario'), 'class'=>'btn btn-monitoreo btn-icon-only btn-circle', 'escape' => false]) ?>
+            <?= $this->Form->button('', ['class' => 'btn btn-monitoreo btn-icon-only btn-circle fa fa-file-excel-o', 'id' => 'GenerarExcel', 'title' => 'Exportar a Excel', 'escape' => false]) ?>
         </div>
-        
     </div>
     <div class="ibox-content">
             <?php
@@ -72,7 +74,8 @@
                         ], [
                             'data' => 'created',
                             'title' => __d('users', 'Creado el'),
-                            'render' => $this->DataTables->callback('fecha')
+                            'render' => $this->DataTables->callback('fecha'),
+                            'searchable' => false
                         ], [
                             'data' => 'deleted',
                             'title' => __d('users', 'Fecha baja'),
@@ -89,3 +92,8 @@
             ?>
     </div>
 </div>
+<script>
+    $('#GenerarExcel').on('click', function(e) {
+        window.open(`/users/excel`, "_self");
+    });
+</script>
