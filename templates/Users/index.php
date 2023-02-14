@@ -37,7 +37,7 @@
     <div class="ibox-title">
         <h5><?= __('Lista Usuarios') ?></h5>
         <div class="m-t-n-xs pull-right">
-            <?= $this->Form->button('', ['class' => 'btn btn-monitoreo btn-icon-only btn-circle GuardarRegistro fa fa-save' ,'title' => 'Guardar el embolsado', 'escape' => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-plus"></i>',['controller' => 'Users', 'action' => 'add'], ['type' => 'button', 'title' => __('Crear un nuevo usuario'), 'class'=>'btn btn-monitoreo btn-icon-only btn-circle', 'escape' => false]) ?>
             <?= $this->Form->button('', ['class' => 'btn btn-monitoreo btn-icon-only btn-circle fa fa-times' , 'title' => 'Cancelar', 'escape' => false]) ?>
         </div>
         

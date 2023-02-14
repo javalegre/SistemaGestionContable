@@ -24,7 +24,7 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <span class="m-r-sm text-muted welcome-message">Bienvenido a <b>ElAgronomo.com</b></span>
+                <span class="m-r-sm text-muted welcome-message"><?= __("Bienvenido a") ?> <b><?= $system_name ?></b></span>
             </li>
             <li class="dropdown" id="menu-container">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -34,14 +34,14 @@
                     </span>
                 </a>
                 <!-- Notificaciones -->
-                  <ul class="dropdown-menu dropdown-messages" style="width: 450px; height: auto; max-height: 285px; overflow-y: auto;" id="messages-container"></ul>
+                <ul class="dropdown-menu dropdown-messages" style="width: 450px; height: auto; max-height: 285px; overflow-y: auto;" id="messages-container"></ul>
             </li>
             <li><?= $this->Html->link('<i class="fa fa-sign-out"></i> Logout', ['plugin' => null, 'controller' => 'Users', 'action' => 'logout'], ['escape' => false]) ?></li>
-            <li>
+            <!-- <li>
                 <a class="right-sidebar-toggle">
                     <i class="fa fa-tasks"></i>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </div>

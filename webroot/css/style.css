@@ -10082,9 +10082,10 @@ small,
 	text-align: left;
 	padding-left: 30px;
 }
-.form-group {
+
+/*.form-group {
   margin-bottom: 3px;
-}
+}*/
 
 /* -------------------------------------------------------*/
 table.dataTable {

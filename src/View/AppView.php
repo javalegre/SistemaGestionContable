@@ -38,5 +38,10 @@ class AppView extends View
     public function initialize(): void
     {
         $this->loadHelper('DataTables.DataTables');
+
+        /* Llamo a un template Adeco, en Config */
+        $this->loadHelper('Form', [
+            'templates' => 'formularios',
+        ]);
     }
 }

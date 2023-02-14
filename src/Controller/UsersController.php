@@ -98,6 +98,8 @@ class UsersController extends AppController
 
     /**
      * Add method
+     * 
+     * Permite subir una imagen como avatar y lo guarda en la carpeta img/users
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
@@ -105,17 +107,36 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
+
+            /* ************************************************************/
+            /* Inicio del proceso de obtener la imagen del usuario        */
+            /* ************************************************************/
+            $imagen = $this->request->getData('image_file');
+            $nombre_imagen = $imagen->getClientFilename();
+
+            if (!is_dir(WWW_ROOT.'img'.DS.'users')) {
+                mdkir(WWW_ROOT.'img'.DS.'users', 0775);
+            }
+
+            if ($imagen) {
+                $targetPath = WWW_ROOT.'img'.DS.'users'.DS.$nombre_imagen;
+                $imagen->moveTo($targetPath);
+
+                $user->ruta_imagen = $nombre_imagen;
+            }
+            /* ************************************************************/
+
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+
         }
-        $groups = $this->Users->Groups->find('list', ['limit' => 200])->all();
-        $roles = $this->Users->Roles->find('list', ['limit' => 200])->all();
-        $this->set(compact('user', 'groups', 'roles'));
+        $this->set(compact('user'));
     }
 
     /**
