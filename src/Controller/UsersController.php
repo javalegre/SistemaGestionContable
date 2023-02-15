@@ -228,50 +228,6 @@ class UsersController extends AppController
     }
 
     /**
-     * Datatable
-     * 
-     * Muestra los datos en server-side del datatable
-     */
-    public function datatable()
-    {
-        $columns = [
-                    [ 
-                        'field' => 'id',
-                        'data' => 'id',
-                        'visible' => false,
-                        'searchable' => false
-                    ], [
-                        'field' => 'nombre',
-                        'data' => 'nombre'
-                    ], [
-                        'field' => 'username',
-                        'data' => 'username'
-                    ], [
-                        'field' => 'email',
-                        'data' => 'email'
-                    ], [
-                        'field' => 'apodo',
-                        'data' => 'apodo'
-                    ], [
-                        'field' => 'observaciones',
-                        'data' => 'observaciones'
-                        ]
-                  ];
-
-        $data = $this->DataTables->find('Users', 'all', [
-            'order' => ['created' => 'asc']
-                ], $columns);
-
-        /* ************************************************************ */
-        /* Datatables Server Side Processing                            */
-        /* ************************************************************ */
-        $this->set('columns', $columns);
-        $this->set('data', $data);
-        $this->set('_serialize', array_merge($this->viewBuilder()->getVar('_serialize'), ['data']));
-        
-    }
-
-    /**
      * excel
      *
      * Genera un archivo en excel con el listado de users
@@ -280,13 +236,9 @@ class UsersController extends AppController
     {
         $stream = $this->Users->GenerarExcel();
         
-        $time = Time::now();
+        $filename = 'usuarios_'. Time::now()->i18nFormat('yyyy_MM_dd_HHmm') .'.xlsx';
 
-        $filename = 'usuarios_'. $time->i18nFormat('yyyy_MM_dd_HHmm') .'.xlsx';
-
-        $response = $this->response;        // Return the stream in a response
-
-        return $response->withType('xlsx')
+        return $this->response->withType('xlsx')
             ->withHeader('Content-Disposition', "attachment;filename=\"{$filename}\"")
             ->withBody($stream);
     }

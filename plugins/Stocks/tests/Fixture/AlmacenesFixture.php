@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Test\Fixture;
+namespace Stocks\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
@@ -28,9 +28,9 @@ class AlmacenesFixture extends TestFixture
                 'predeterminado' => 1,
                 'observaciones' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'geo_posicion' => 'Lorem ipsum dolor sit amet',
-                'created' => '2023-02-06 18:52:05',
-                'modified' => '2023-02-06 18:52:05',
-                'deleted' => '2023-02-06 18:52:05',
+                'created' => '2023-02-15 13:22:44',
+                'modified' => '2023-02-15 13:22:44',
+                'deleted' => '2023-02-15 13:22:44',
             ],
         ];
         parent::init();

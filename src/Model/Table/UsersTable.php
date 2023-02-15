@@ -7,7 +7,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-// use Cake\Datasource\ConnectionManager;
 use Cake\I18n\Time;
 use Cake\Http\CallbackStream;
 
@@ -15,7 +14,6 @@ use SoftDelete\Model\Table\SoftDeleteTrait;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-// use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**

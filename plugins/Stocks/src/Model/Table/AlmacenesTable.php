@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Model\Table;
+namespace Stocks\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -11,22 +11,22 @@ use Cake\Validation\Validator;
 /**
  * Almacenes Model
  *
- * @property \App\Model\Table\LocalidadesTable&\Cake\ORM\Association\BelongsTo $Localidades
- * @property \App\Model\Table\PlanDeCuentasTable&\Cake\ORM\Association\BelongsTo $PlanDeCuentas
+ * @property \Stocks\Model\Table\LocalidadesTable&\Cake\ORM\Association\BelongsTo $Localidades
+ * @property \Stocks\Model\Table\PlanDeCuentasTable&\Cake\ORM\Association\BelongsTo $PlanDeCuentas
  *
- * @method \App\Model\Entity\Almacene newEmptyEntity()
- * @method \App\Model\Entity\Almacene newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Almacene[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Almacene get($primaryKey, $options = [])
- * @method \App\Model\Entity\Almacene findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Almacene patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Almacene[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Almacene|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Almacene saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Stocks\Model\Entity\Almacene newEmptyEntity()
+ * @method \Stocks\Model\Entity\Almacene newEntity(array $data, array $options = [])
+ * @method \Stocks\Model\Entity\Almacene[] newEntities(array $data, array $options = [])
+ * @method \Stocks\Model\Entity\Almacene get($primaryKey, $options = [])
+ * @method \Stocks\Model\Entity\Almacene findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \Stocks\Model\Entity\Almacene patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \Stocks\Model\Entity\Almacene[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Stocks\Model\Entity\Almacene|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Stocks\Model\Entity\Almacene saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Stocks\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \Stocks\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \Stocks\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \Stocks\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
@@ -49,10 +49,10 @@ class AlmacenesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Localidades', [
-            'foreignKey' => 'localidade_id',
+            'foreignKey' => 'localidade_id'
         ]);
         $this->belongsTo('PlanDeCuentas', [
-            'foreignKey' => 'plan_de_cuenta_id',
+            'foreignKey' => 'plan_de_cuenta_id'
         ]);
     }
 
@@ -66,12 +66,12 @@ class AlmacenesTable extends Table
     {
         $validator
             ->scalar('nombre')
-            ->maxLength('nombre', 50)
+            ->maxLength('nombre', 100)
             ->allowEmptyString('nombre');
 
         $validator
             ->scalar('direccion')
-            ->maxLength('direccion', 50)
+            ->maxLength('direccion', 200)
             ->allowEmptyString('direccion');
 
         $validator

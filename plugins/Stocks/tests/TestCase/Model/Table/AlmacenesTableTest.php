@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Test\TestCase\Model\Table;
+namespace Stocks\Test\TestCase\Model\Table;
 
-use App\Model\Table\AlmacenesTable;
 use Cake\TestSuite\TestCase;
+use Stocks\Model\Table\AlmacenesTable;
 
 /**
- * App\Model\Table\AlmacenesTable Test Case
+ * Stocks\Model\Table\AlmacenesTable Test Case
  */
 class AlmacenesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AlmacenesTable
+     * @var \Stocks\Model\Table\AlmacenesTable
      */
     protected $Almacenes;
 
@@ -24,9 +24,9 @@ class AlmacenesTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Almacenes',
-        'app.Localidades',
-        'app.PlanDeCuentas',
+        'plugin.Stocks.Almacenes',
+        'plugin.Stocks.Localidades',
+        'plugin.Stocks.PlanDeCuentas',
     ];
 
     /**
@@ -57,7 +57,7 @@ class AlmacenesTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\AlmacenesTable::validationDefault()
+     * @uses \Stocks\Model\Table\AlmacenesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -68,7 +68,7 @@ class AlmacenesTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\AlmacenesTable::buildRules()
+     * @uses \Stocks\Model\Table\AlmacenesTable::buildRules()
      */
     public function testBuildRules(): void
     {

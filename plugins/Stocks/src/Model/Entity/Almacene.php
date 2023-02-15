@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Model\Entity;
+namespace Stocks\Model\Entity;
 
 use Cake\ORM\Entity;
 
@@ -21,8 +21,8 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property \Cake\I18n\FrozenTime|null $deleted
  *
- * @property \App\Model\Entity\Localidade $localidade
- * @property \App\Model\Entity\PlanDeCuenta $plan_de_cuenta
+ * @property \Stocks\Model\Entity\Localidade $localidade
+ * @property \Stocks\Model\Entity\PlanDeCuenta $plan_de_cuenta
  */
 class Almacene extends Entity
 {

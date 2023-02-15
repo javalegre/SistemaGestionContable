@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Almacene $almacene
+ * @var \Cake\Datasource\EntityInterface $almacene
  */
 ?>
 <div class="row">

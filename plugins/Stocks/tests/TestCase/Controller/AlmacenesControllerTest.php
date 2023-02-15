@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Test\TestCase\Controller;
+namespace Stocks\Test\TestCase\Controller;
 
-use App\Controller\AlmacenesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Stocks\Controller\AlmacenesController;
 
 /**
- * App\Controller\AlmacenesController Test Case
+ * Stocks\Controller\AlmacenesController Test Case
  *
- * @uses \App\Controller\AlmacenesController
+ * @uses \Stocks\Controller\AlmacenesController
  */
 class AlmacenesControllerTest extends TestCase
 {
@@ -22,16 +22,16 @@ class AlmacenesControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Almacenes',
-        'app.Localidades',
-        'app.PlanDeCuentas',
+        'plugin.Stocks.Almacenes',
+        'plugin.Stocks.Localidades',
+        'plugin.Stocks.PlanDeCuentas',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\AlmacenesController::index()
+     * @uses \Stocks\Controller\AlmacenesController::index()
      */
     public function testIndex(): void
     {
@@ -42,7 +42,7 @@ class AlmacenesControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\AlmacenesController::view()
+     * @uses \Stocks\Controller\AlmacenesController::view()
      */
     public function testView(): void
     {
@@ -53,7 +53,7 @@ class AlmacenesControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\AlmacenesController::add()
+     * @uses \Stocks\Controller\AlmacenesController::add()
      */
     public function testAdd(): void
     {
@@ -64,7 +64,7 @@ class AlmacenesControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\AlmacenesController::edit()
+     * @uses \Stocks\Controller\AlmacenesController::edit()
      */
     public function testEdit(): void
     {
@@ -75,7 +75,7 @@ class AlmacenesControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\AlmacenesController::delete()
+     * @uses \Stocks\Controller\AlmacenesController::delete()
      */
     public function testDelete(): void
     {

@@ -1,13 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace Stocks\Controller;
+
+use Stocks\Controller\AppController;
 
 /**
  * Almacenes Controller
  *
- * @property \App\Model\Table\AlmacenesTable $Almacenes
- * @method \App\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \Stocks\Model\Table\AlmacenesTable $Almacenes
+ * @method \Stocks\Model\Entity\Almacene[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class AlmacenesController extends AppController
 {

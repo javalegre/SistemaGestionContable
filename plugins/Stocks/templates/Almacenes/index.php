@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\Almacene> $almacenes
+ * @var iterable<\Cake\Datasource\EntityInterface> $almacenes
  */
 ?>
 <div class="almacenes index content">
