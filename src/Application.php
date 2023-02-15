@@ -76,6 +76,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         // Load more plugins here
         $this->addPlugin('Stocks');
+        $this->addPlugin('Ventas');
+        $this->addPlugin('Compras');
+        $this->addPlugin('Contabilidad');
     }
 
     /**
