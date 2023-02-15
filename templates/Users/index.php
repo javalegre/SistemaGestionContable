@@ -41,7 +41,7 @@
         <h5><?= __('Lista Usuarios') ?></h5>
         <div class="m-t-n-xs pull-right">
             <?= $this->Html->link('<i class="fa fa-plus"></i>', ['controller' => 'Users', 'action' => 'add'], ['type' => 'button', 'title' => __('Crear un nuevo usuario'), 'class'=>'btn btn-monitoreo btn-icon-only btn-circle', 'escape' => false]) ?>
-            <?= $this->Form->button('', ['class' => 'btn btn-monitoreo btn-icon-only btn-circle fa fa-file-excel-o', 'id' => 'GenerarExcel', 'title' => 'Exportar a Excel', 'escape' => false]) ?>
+            <?= $this->Html->link('<i class="fa fa-file-excel-o"></i>', ['controller' => 'Users', 'action' => 'excel'], ['type' => 'button', 'title' => __('Exportar a Excel'), 'class'=>'btn btn-monitoreo btn-icon-only btn-circle', 'escape' => false]) ?>
         </div>
     </div>
     <div class="ibox-content">
@@ -92,8 +92,3 @@
             ?>
     </div>
 </div>
-<script>
-    $('#GenerarExcel').on('click', function(e) {
-        window.open(`/users/excel`, "_self");
-    });
-</script>

@@ -7,12 +7,16 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+// use Cake\Datasource\ConnectionManager;
+use Cake\I18n\Time;
+use Cake\Http\CallbackStream;
+
 use SoftDelete\Model\Table\SoftDeleteTrait;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use Cake\Datasource\ConnectionManager;
-use Cake\I18n\Time;
+// use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * Users Model
@@ -147,19 +151,11 @@ class UsersTable extends Table
         
         $documento = new Spreadsheet();
         
+        $writer = new Xlsx($documento);
+
         $sheet = $documento->getActiveSheet();
         $sheet->setTitle('Users');
         
-        //  /* Creamos el encabezado y le damos estilos */
-        // $sheet->mergeCells('A1:A3'); /* Inicio Logo  */
-        // $drawing = new Drawing();
-        // $drawing->setName('Logo');
-        // $drawing->setDescription('Users');
-        // $drawing->setPath(WWW_ROOT . 'img' . DS . 'logo_elagronomo_print.png');
-        // $drawing->setCoordinates('A1');
-        // $drawing->setHeight(58);
-        // $drawing->setWorksheet($documento->getActiveSheet());
-
         /* Ahora el nombre del sistema */
         $sheet->mergeCells('B1:G3');
         $sheet->setCellValue('B1', $system_name);
@@ -211,18 +207,10 @@ class UsersTable extends Table
             $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
         
-        $time = Time::now();
-        $fecha_actual = $time->i18nFormat('yyyy_MM_dd_HHmm');
+        $stream = new CallbackStream(function () use ($writer) {
+            $writer->save('php://output');
+        });
 
-        $nombreDelDocumento = 'usuarios_'. $fecha_actual .'.xlsx';
-        
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="' . $nombreDelDocumento . '"');
-        header('Cache-Control: max-age=0');
-        
-        $writer = IOFactory::createWriter($documento, 'Xlsx', 'Excel2007');
-        ob_end_clean();
-        $writer->save('php://output');
-        exit();
+        return $stream;
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
+use Cake\I18n\Time;
 
 /**
  * Users Controller
@@ -277,8 +278,16 @@ class UsersController extends AppController
      */
     public function excel()
     {
-        $resultado = $this->Users->GenerarExcel();
+        $stream = $this->Users->GenerarExcel();
+        
+        $time = Time::now();
 
-        return $resultado;
+        $filename = 'usuarios_'. $time->i18nFormat('yyyy_MM_dd_HHmm') .'.xlsx';
+
+        $response = $this->response;        // Return the stream in a response
+
+        return $response->withType('xlsx')
+            ->withHeader('Content-Disposition', "attachment;filename=\"{$filename}\"")
+            ->withBody($stream);
     }
 }
