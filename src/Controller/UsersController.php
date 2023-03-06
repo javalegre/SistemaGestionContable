@@ -62,22 +62,6 @@ class UsersController extends AppController
 
             $this->set('data', $data);
             $this->viewBuilder()->setOption('serialize', ['data']);
-
-
-
-
-            // $viewvars = $this->viewBuilder()->getVar('_serialize');
-
-            // // // $this->set('_serialize', array_merge($viewvars, ['data']));
-
-            // // // // Set the view vars that have to be serialized.
-            // // // $this->set('articles', $this->paginate());
-            // // // // Specify which view vars JsonView should serialize.
-            //  $this->viewBuilder()->setOption('serialize', array_merge($viewvars, ['data']));
-
-            //  $this->set('users', $users);
-            //  // Specify which view vars JsonView should serialize.
-            //  $this->viewBuilder()->setOption('serialize', 'users');
     }
 
     /**

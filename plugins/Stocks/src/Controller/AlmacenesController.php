@@ -20,12 +20,42 @@ class AlmacenesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Localidades', 'PlanDeCuentas'],
-        ];
-        $almacenes = $this->paginate($this->Almacenes);
+        $columns = [
+            [ 
+                'field' => 'id',
+                'data' => 'id',
+                'visible' => false,
+                'searchable' => false
+            ], [
+                'field' => 'nombre',
+                'data' => 'nombre'
+            ], [
+                'field' => 'direccion',
+                'data' => 'direccion'
+            ], [
+                'field' => 'codigo_postal',
+                'data' => 'codigo_postal'
+            ], [
+                'field' => 'observaciones',
+                'data' => 'observaciones',
+                'searchable' => false
+            ], [
+                'field' => 'created',
+                'data' => 'created'
+            ], [
+                'field' => 'deleted',
+                'data' => 'deleted'
+            ]
+          ];
 
-        $this->set(compact('almacenes'));
+            $this->set('columns', $columns);
+
+            $data = $this->DataTables->find('Stocks.Almacenes', 'all', [
+                'order' => ['created' => 'asc']
+                    ], $columns);
+
+            $this->set('data', $data);
+            $this->viewBuilder()->setOption('serialize', ['data']);
     }
 
     /**
