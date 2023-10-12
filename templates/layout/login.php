@@ -11,7 +11,7 @@
         <?= $this->Html->css(['plugins/bootstrap/bootstrap.min', 'plugins/font-awesome/css/font-awesome.min', 'style']) ?> 
         <?= $this->Html->script(['plugins/jquery/jquery-3.6.3.min','plugins/bootstrap/bootstrap.min']) ?>
     </head>
-    <body class="gray-bg">
+    <body class="gray-bg"  style="background-image: url('<?php echo $this->Url->image('fondo.jpg')?>'); background-size: cover; background-repeat: no-repeat; ackground-attachment: fixed; background-color: #454156; ">
         <?= $this->Flash->render('auth') ?>
         <?= $this->fetch('content') ?>
     </body>

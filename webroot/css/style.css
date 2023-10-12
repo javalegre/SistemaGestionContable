@@ -5602,7 +5602,41 @@ body.mini-navbar.fixed-sidebar .logo-element {
     padding-top: 110px;
 }
 .loginscreen.middle-box {
-    width: 350px;
+    height: 420px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+.middle-box input {
+    display: block;
+    width: 100%;
+    background-color: rgba(0,0,0,0.07);
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+}
+.middle-box .form-control::placeholder {
+	color: #fff;
+	opacity: 1;
+}
+
+.middle-box label {
+    color: #fff;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    text-shadow: none;
 }
 .loginColumns {
     max-width: 800px;
@@ -5614,6 +5648,7 @@ body.mini-navbar.fixed-sidebar .logo-element {
     margin: 0 auto;
     padding: 100px 20px 20px 20px;
 }
+
 .logo-name {
     color: #e6e6e6;
     font-size: 180px;

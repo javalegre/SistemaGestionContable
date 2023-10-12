@@ -24,17 +24,9 @@
                         echo $this->Form->control('direccion', ['class' => 'form-control']);
                         echo $this->Form->control('codigo_postal', ['class' => 'form-control']);
                         echo $this->Form->control('localidade_id', ['options' => $localidades, 'empty' => true, 'class' => 'form-control', 'label' => 'Localidad']);
-
-                        // echo $this->Form->control('plan_de_cuenta_id', ['options' => $planDeCuentas, 'empty' => true, 'class' => 'form-control']);
                         echo $this->Form->control('predeterminado');
                         echo $this->Form->control('observaciones', ['class' => 'form-control']);
                         echo $this->Form->control('geo_posicion');
-
-                        // echo $this->Form->control('username', ['class' => 'form-control', 'label' => 'Usuario']);
-                        // echo $this->Form->control('password', ['class' => 'form-control']);
-                        // echo $this->Form->control('email', ['class' => 'form-control']);
-                        // echo $this->Form->control('apodo', ['class' => 'form-control']);
-                        // echo $this->Form->control('observaciones', ['class' => 'form-control']);
                     ?>
                 </div>
                 <div class="col-md-6">
@@ -61,39 +53,3 @@
     //     document.getElementById("user").submit(); 
     // });
 </script>
-
-
-<!-- <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            < ?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $almacene->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $almacene->id), 'class' => 'side-nav-item']
-            ) ?>
-            < ?= $this->Html->link(__('List Almacenes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="almacenes form content">
-            < ?= $this->Form->create($almacene) ?>
-            <fieldset>
-                <legend>< ?= __('Edit Almacene') ?></legend>
-                < ?php
-                    echo $this->Form->control('nombre');
-                    echo $this->Form->control('direccion');
-                    echo $this->Form->control('codigo_postal');
-                    echo $this->Form->control('localidade_id', ['options' => $localidades, 'empty' => true]);
-                    echo $this->Form->control('plan_de_cuenta_id', ['options' => $planDeCuentas, 'empty' => true]);
-                    echo $this->Form->control('predeterminado');
-                    echo $this->Form->control('observaciones');
-                    echo $this->Form->control('geo_posicion');
-                    echo $this->Form->control('deleted', ['empty' => true]);
-                ?>
-            </fieldset>
-            < ?= $this->Form->button(__('Submit')) ?>
-            < ?= $this->Form->end() ?>
-        </div>
-    </div>
-</div> -->
